@@ -34,6 +34,9 @@ ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) +
   geom_point() +
   labs(title = "Temperature vs Time in Early January",
        x = "Time", y = "Temperature (°F)", color = "Humidity")
+```
+
+```{r}
 ggsave("scatter_temp_time.png")
 
 ```
