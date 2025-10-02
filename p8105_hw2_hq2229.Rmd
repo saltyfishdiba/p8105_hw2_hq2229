@@ -18,7 +18,7 @@ library(tidyverse)
 library(lubridate)
 library(janitor)
 
-p1_dir  <- "D:/BISTP8105/p8105_hw2_hq2229/fivethirtyeight_datasets"
+p1_dir  <- "fivethirtyeight_datasets"
 pols_fp <- file.path(p1_dir, "pols-month.csv")
 snp_fp  <- file.path(p1_dir, "snp.csv")
 un_fp   <- file.path(p1_dir, "unemployment.csv")
@@ -47,7 +47,7 @@ snp <- read_csv(snp_fp, show_col_types = FALSE) |>
   select(year, month, close) |>
   arrange(year, match(month, tolower(month.abb)))
 
-##  unemployment: wide->long
+##unemployment: wide->long
 unemp <- read_csv(un_fp, show_col_types = FALSE) |>
   pivot_longer(-Year, names_to = "month", values_to = "unemployment_rate") |>
   clean_names() |>
@@ -97,7 +97,7 @@ tw_clean <- function(df, label) {
   out <- df |>
     clean_names() |>
     mutate(
-      # parse date; infer year/month if not provided
+      #infer year/month if not provided
       date  = as.Date(date),
       year  = suppressWarnings(as.integer(year)),
       month = suppressWarnings(as.integer(month)),
